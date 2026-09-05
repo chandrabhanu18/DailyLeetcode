@@ -1,0 +1,25 @@
+# Given an array arr[] with n elements. find the longest subsequence such that the absolute difference between adjacent elements is one.
+
+# Examples:
+
+# Input : arr[] = [10, 9, 4, 5, 4, 8, 6]
+# Output : 3
+# Explanation: Longest subsequences with difference 1 are [10, 9, 8], [4, 5, 4] and [4, 5, 6]. 
+# Input : arr[] = [1, 2, 3, 2, 3, 7, 2, 1]
+# Output : 7
+# Explanation:  Longest subsequences with difference 1 is [1, 2, 3, 2, 3, 2, 1]. 
+# Constraints:
+
+# 1 ≤ arr.size(), arr[i] ≤ 10^6
+
+
+class Solution:
+    def longestSubseq(self, arr):
+        # code here
+        dp={}
+        answer=0
+        for i in arr:
+            previous=max(dp.get(i-1,0),dp.get(i+1,0))
+            dp[i]=previous+1
+            answer=max(answer,dp[i])
+        return answer   
